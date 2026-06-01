@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: auth_service_inno
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/my_auth_db
+    username: ${DB_USERNAME:postgres_user}
+    password: ${DB_PASSWORD:123}
+
+  liquibase:
+    enabled: true
+    changelog: classpath:db/changelog/db.changelog-master.yaml
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration-ms: ${JWT_ACCESS_EXPIRATION_MS:3600000}
+  refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+
+logging:
+  level:
+    com:
+      example:
+        authservice: DEBUG
+    org:
+      springframework:
+        security: DEBUG
